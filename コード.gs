@@ -9,12 +9,12 @@ function popup() {
   artist = artist.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
 
   if(artist_2 == ""){
-    text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A%3Csmall%3E%23nowplaying%20|%20" + device + "%3C/small%3E";
-    plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>&lt;small&gt;#nowplaying | " + device + "&lt;/small&gt;"
+    text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A%23nowplaying%3Csmall%3E%20|%20" + device + "%3C/small%3E";
+    plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>#nowplaying&lt;small&gt; | " + device + "&lt;/small&gt;"
   }else{
-    artist_2 = artist.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
-    text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A🎤%20" + artist_2 + "%0A%3Csmall%3E%23nowplaying%20|%20" + device + "%3C/small%3E";
-    plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>🎤 " + artist_2 +"<br>&lt;small&gt;#nowplaying | " + device + "&lt;/small&gt;"
+    artist_2 = artist_2.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
+    text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A🎤%20" + artist_2 + "%0A%23nowplaying%3Csmall%3E%20|%20" + device + "%3C/small%3E";
+    plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>🎤 " + artist_2 +"<br>#nowplaying&lt;small&gt; | " + device + "&lt;/small&gt;"
   }
   var url_1 = "https://misskey.io/share?text=" + text;
   var url_2 = "https://live-theater.net/share?text=" + text;
