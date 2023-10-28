@@ -1,17 +1,18 @@
 //https://qiita.com/nozomit/items/0bec86a08f967aaa0762
 
-function onOpen(){
-  popup();
-}
-
 function popup() {
-  const {song, external_urls, artist, artist_2, device} = generate_sharelink()
+  var {song, external_urls, artist, artist_2, device} = generate_sharelink()
   var text;
   var plaintext;
+  
+  song = song.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
+  artist = artist.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
+
   if(artist_2 == ""){
     text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A%3Csmall%3E%23nowplaying%20|%20" + device + "%3C/small%3E";
     plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>&lt;small&gt;#nowplaying | " + device + "&lt;/small&gt;"
   }else{
+    artist_2 = artist.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
     text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A🎤%20" + artist_2 + "%0A%3Csmall%3E%23nowplaying%20|%20" + device + "%3C/small%3E";
     plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>🎤 " + artist_2 +"<br>&lt;small&gt;#nowplaying | " + device + "&lt;/small&gt;"
   }
@@ -131,7 +132,7 @@ function getArtistAndSongString(response) {
    if(device == "iPhone"){
     device = "iPhone 13 mini";
    }else if(device == "TH-CENTIO"){
-    device = "TH-CENTIO(Win自作機)";
+    device = "TH-CENTIO";
    }else if(device == "TH-VAIO"){
     device = "VAIO SX12";
    }else if(device == "TH-MACBOOK"){
