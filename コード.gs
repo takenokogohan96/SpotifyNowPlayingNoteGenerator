@@ -2,26 +2,35 @@
 
 function popup() {
   var {song, external_urls, artist, artist_2, device} = generate_sharelink()
-  var text;
-  var plaintext;
-  
-  song = song.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
-  artist = artist.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
 
-  if(artist_2 == ""){
-    text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A%23nowplaying%3Csmall%3E%20|%20" + device + "%3C/small%3E";
-    plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>#nowplaying&lt;small&gt; | " + device + "&lt;/small&gt;"
+  if(song == undefined){
+    var ui = FormApp.getUi();
+    ui.alert('APIresponse：204 曲を再生していません');
   }else{
-    artist_2 = artist_2.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
-    text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A🎤%20" + artist_2 + "%0A%23nowplaying%3Csmall%3E%20|%20" + device + "%3C/small%3E";
-    plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>🎤 " + artist_2 +"<br>#nowplaying&lt;small&gt; | " + device + "&lt;/small&gt;"
-  }
-  var url_1 = "https://misskey.io/share?text=" + text;
-  var url_2 = "https://live-theater.net/share?text=" + text;
+    var text;
+    var plaintext;
   
-  var script = "<a href='" +url_1+ "' target='window.open'>misskey.io</a><br><a href='" +url_2+ "' target='window.open'>live-theater.net</a><br><br>"+ plaintext;
-  var html = HtmlService.createHtmlOutput(script);
-  FormApp.getUi().showModalDialog(html, '投稿先サーバ');
+    song = song.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
+    artist = artist.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
+
+    if(artist_2 == ""){
+      text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A%23nowplaying%3Csmall%3E%20|%20" + device + "%3C/small%3E";
+      plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>#nowplaying&lt;small&gt; | " + device + "&lt;/small&gt;"
+    }else{
+      artist_2 = artist_2.replace("&",'&amp;').replace("'","&#39;").replace('"','&#34;');
+      text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A🎤%20" + artist_2 + "%0A%23nowplaying%3Csmall%3E%20|%20" + device + "%3C/small%3E";
+      plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>🎤 " + artist_2 +"<br>#nowplaying&lt;small&gt; | " + device + "&lt;/small&gt;"
+    }
+
+    var url_1 = "https://misskey.io/share?text=" + text;
+    var url_2 = "https://live-theater.net/share?text=" + text;
+  
+    var script = "<a href='" +url_1+ "' target='window.open'>misskey.io</a><br><a href='" +url_2+ "' target='window.open'>live-theater.net</a><br><br>"+ plaintext;
+    var html = HtmlService.createHtmlOutput(script);
+    FormApp.getUi().showModalDialog(html, '投稿先サーバ');
+  }
+
+
 
 }
 
@@ -104,7 +113,8 @@ function getNowPlaying(access_token, basic_authorization) {
      case 200: // Spotify の曲をセット
        return getArtistAndSongString(response);
      case 204: // 何も聞いていない
-       return null;
+       var code = response.getResponseCode();
+       return {code, code, code, code, code};
      case 401: // access_token が切れた
        const refreshed_access_token = refreshAccessTokenToSpotify(basic_authorization);
        return getNowPlaying(refreshed_access_token, basic_authorization);
@@ -136,7 +146,7 @@ function getArtistAndSongString(response) {
    }else if(device == "TH-VAIO"){
     device = "VAIO SX12";
    }else if(device == "TH-MACBOOK"){
-    device = "MBA(11-inch, Early 2015)";
+    device = "MBA(11-inch, 2015)";
    }
 
    return {song, external_urls, artist, artist_2, device};
