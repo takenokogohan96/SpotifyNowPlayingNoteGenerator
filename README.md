@@ -1,1 +1,1 @@
-# misskey-nowplaying
+# Misskey_nowplayingGnerator
