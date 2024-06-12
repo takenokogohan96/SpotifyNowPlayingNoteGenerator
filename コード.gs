@@ -1,4 +1,4 @@
-//https://qiita.com/nozomit/items/0bec86a08f967aaa0762
+//参考：https://qiita.com/nozomit/items/0bec86a08f967aaa0762
 
 function popup() {
   var {song, external_urls, artist, artist_2, device} = generate_sharelink()
@@ -29,18 +29,15 @@ function popup() {
     var html = HtmlService.createHtmlOutput(script);
     FormApp.getUi().showModalDialog(html, '投稿先サーバ');
   }
-
-
-
 }
 
 function generate_sharelink() {
   // ******************
   // ここから下を個別に設定
-  const client_id = "5949e42842b64a139732ca7c61014d77";
-  const client_secret = "8f686e1f968f45c6b92695519d2636d5";
-  const authorization_code = "AQBE-B6wLqPvn8uFFeEWGezcb9Q7PNW4p-FS08_WATcykJvN59p5e7XKRItQJkRHaobKxhg8KRm1BZCt8U-ws7hoWWGY49Euv4y-G1AXa9OoFexOHUPKgmK6IeYPe5Apj7g3sN693wurMGAYl8ANVWhjgf6BrvDrIzI_-KUbAUWLrredU-faxEcIwFXOEyjIlnEB";
-  const basic_authorization = Utilities.base64Encode(client_id+":"+client_secret); // 変更不要
+  const client_id = PropertiesService.getScriptProperties().getProperty("Client ID");
+  const client_secret = PropertiesService.getScriptProperties().getProperty("Client secret");
+  const authorization_code = PropertiesService.getScriptProperties().getProperty("Authrization code");
+  const basic_authorization = Utilities.base64Encode(client_id+":"+client_secret);
   // ここから上を個別に設定
   // ******************
 
