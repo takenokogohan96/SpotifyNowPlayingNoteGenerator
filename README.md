@@ -1,1 +1,1 @@
-# Misskey_nowplayingGnerator
+# GAS_Spotify2MisskeynowplayingGnerator
