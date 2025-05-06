@@ -1,5 +1,5 @@
-# GAS_Spotify2MisskeynowplayingGnerator
+# SpotifyNowPlayingNoteGenerator
 ### 生成画面
-![image](https://i.imgur.com/cpunM5z.png)
+![image](https://i.imgur.com/uqe5Vg2.png)
 ### 共有画面
-![image](https://i.imgur.com/tsjFars.png)
+![image](https://i.imgur.com/fF8Uxby.png)
