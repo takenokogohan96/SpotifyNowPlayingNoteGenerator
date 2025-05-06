@@ -23,11 +23,10 @@ function popup() {
     }
 
     var url_1 = "https://misskey.io/share?text=" + text;
-    var url_2 = "https://live-theater.net/share?text=" + text;
   
-    var script = "<a href='" +url_1+ "' target='window.open'>misskey.io</a><br><a href='" +url_2+ "' target='window.open'>live-theater.net</a><br><br>"+ plaintext;
+    var script = "<h3><a href='" +url_1+ "' target='window.open'>Note to misskey.io</a></h3><hr><b>rawtext</b><br>"+ plaintext;
     var html = HtmlService.createHtmlOutput(script);
-    FormApp.getUi().showModalDialog(html, '投稿先サーバ');
+    FormApp.getUi().showModalDialog(html, 'Generated link');
   }
 }
 
@@ -148,10 +147,3 @@ function getArtistAndSongString(response) {
 
    return {song, external_urls, artist, artist_2, device};
 }
-
-
-
-
-
-
-
