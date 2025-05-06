@@ -1,5 +1,3 @@
-//参考：https://qiita.com/nozomit/items/0bec86a08f967aaa0762
-
 function popup() {
   var {song, external_urls, artist, artist_2, device} = generate_sharelink()
 
@@ -31,14 +29,12 @@ function popup() {
 }
 
 function generate_sharelink() {
-  // ******************
-  // ここから下を個別に設定
+
+  // 認証情報
   const client_id = PropertiesService.getScriptProperties().getProperty("Client ID");
   const client_secret = PropertiesService.getScriptProperties().getProperty("Client secret");
   const authorization_code = PropertiesService.getScriptProperties().getProperty("Authrization code");
   const basic_authorization = Utilities.base64Encode(client_id+":"+client_secret);
-  // ここから上を個別に設定
-  // ******************
 
   // Spotify へのアクセストークンを取得
   const scriptProperties = PropertiesService.getScriptProperties();
